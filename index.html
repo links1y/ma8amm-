@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Maram - Official Links</title>
     <!-- Font Cyber / ICS Pro -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
@@ -18,10 +18,11 @@
             background: #fff0f6;
             color: #4a154b;
             min-height: 100vh;
+            min-height: 100dvh; /* Responsive Mobile Viewport */
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 30px 15px;
+            padding: clamp(15px, 4vw, 35px);
             position: relative;
             overflow-x: hidden;
         }
@@ -57,16 +58,16 @@
         }
 
         .orb-1 {
-            width: 380px;
-            height: 380px;
+            width: clamp(250px, 40vw, 380px);
+            height: clamp(250px, 40vw, 380px);
             background: #ffb7d5;
             top: -60px;
             left: -60px;
         }
 
         .orb-2 {
-            width: 320px;
-            height: 320px;
+            width: clamp(200px, 35vw, 320px);
+            height: clamp(200px, 35vw, 320px);
             background: #ffd1e8;
             bottom: -60px;
             right: -60px;
@@ -80,18 +81,19 @@
 
         .container {
             width: 100%;
-            max-width: 410px;
+            max-width: 420px;
             text-align: center;
             position: relative;
             z-index: 1;
+            margin: auto;
         }
 
-        /* White & Pink Glass Card */
+        /* White & Pink Glass Card with Fixed Aspect Ratio scale */
         .profile-card {
             background: rgba(255, 255, 255, 0.85);
             border: 2px solid rgba(255, 105, 180, 0.3);
-            border-radius: 35px;
-            padding: 35px 25px 30px;
+            border-radius: clamp(24px, 6vw, 35px);
+            padding: clamp(20px, 5vw, 35px) clamp(16px, 4vw, 25px);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             box-shadow: 0 15px 35px rgba(255, 105, 180, 0.2), 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -99,9 +101,10 @@
 
         .avatar-container {
             position: relative;
-            width: 130px;
-            height: 130px;
-            margin: 0 auto 22px;
+            width: clamp(100px, 28vw, 130px);
+            height: clamp(100px, 28vw, 130px);
+            aspect-ratio: 1 / 1;
+            margin: 0 auto clamp(14px, 3vw, 22px);
         }
 
         /* Pink Cute RGB Border */
@@ -126,6 +129,7 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
+            aspect-ratio: 1 / 1;
             border: 4px solid #fff;
             z-index: 2;
         }
@@ -139,9 +143,9 @@
             background: linear-gradient(90deg, #ff1493, #ff69b4);
             color: #fff;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.65rem;
+            font-size: clamp(0.55rem, 2vw, 0.65rem);
             font-weight: 800;
-            padding: 5px 16px;
+            padding: 4px 14px;
             border-radius: 20px;
             letter-spacing: 2px;
             z-index: 3;
@@ -150,6 +154,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            white-space: nowrap;
         }
 
         .live-dot {
@@ -167,7 +172,7 @@
 
         h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
+            font-size: clamp(1.4rem, 5vw, 1.8rem);
             font-weight: 900;
             letter-spacing: 2px;
             background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
@@ -179,18 +184,18 @@
         .subtitle {
             font-family: 'Orbitron', sans-serif;
             color: #8a4b76;
-            font-size: 0.75rem;
+            font-size: clamp(0.65rem, 2.2vw, 0.75rem);
             font-weight: 600;
             letter-spacing: 1px;
-            margin-top: 6px;
-            margin-bottom: 25px;
+            margin-top: 4px;
+            margin-bottom: clamp(16px, 4vw, 25px);
             text-transform: uppercase;
         }
 
         .links-list {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: clamp(10px, 2.5vw, 16px);
         }
 
         .link-card {
@@ -198,10 +203,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 14px 18px;
+            padding: clamp(10px, 2.5vw, 14px) clamp(12px, 3vw, 18px);
             background: rgba(255, 255, 255, 0.9);
             border: 1.5px solid rgba(255, 182, 193, 0.6);
-            border-radius: 22px;
+            border-radius: clamp(16px, 4vw, 22px);
             color: #4a154b;
             text-decoration: none;
             overflow: hidden;
@@ -225,54 +230,64 @@
         }
 
         .icon-wrapper {
-            width: 46px;
-            height: 46px;
-            border-radius: 16px;
+            width: clamp(38px, 10vw, 46px);
+            height: clamp(38px, 10vw, 46px);
+            aspect-ratio: 1 / 1;
+            border-radius: clamp(12px, 3vw, 16px);
             display: flex;
             align-items: center;
             justify-content: center;
             background: #fff0f6;
             transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
 
         .icon-wrapper svg {
-            width: 22px;
-            height: 22px;
+            width: clamp(18px, 5vw, 22px);
+            height: clamp(18px, 5vw, 22px);
             fill: currentColor;
         }
 
         .link-info {
             flex: 1;
             text-align: left;
-            margin-left: 15px;
+            margin-left: 12px;
+            overflow: hidden;
         }
 
         .link-title {
             display: block;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 2.5vw, 0.85rem);
             font-weight: 800;
             letter-spacing: 1px;
             color: #2b082c;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
 
         .link-desc {
             display: block;
-            font-size: 0.78rem;
+            font-size: clamp(0.7rem, 2.2vw, 0.78rem);
             font-weight: 600;
             color: #a05a8d;
             margin-top: 2px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
 
         .chevron {
-            width: 16px;
-            height: 16px;
+            width: clamp(14px, 3.5vw, 16px);
+            height: clamp(14px, 3.5vw, 16px);
             fill: #c982b5;
             transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
 
         .link-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
             background: #ffffff;
             border-color: #ff69b4;
             box-shadow: 0 10px 20px rgba(255, 105, 180, 0.25);
@@ -293,22 +308,23 @@
         /* Floating Indicator */
         .music-indicator {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: clamp(10px, 3vw, 20px);
+            right: clamp(10px, 3vw, 20px);
             background: #ffffff;
             border: 2px solid #ffb6c1;
             border-radius: 50px;
-            padding: 8px 18px 8px 12px;
+            padding: 6px 14px 6px 10px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
             z-index: 100;
         }
 
         .music-icon {
-            width: 28px;
-            height: 28px;
+            width: clamp(22px, 6vw, 28px);
+            height: clamp(22px, 6vw, 28px);
+            aspect-ratio: 1 / 1;
             background: linear-gradient(135deg, #ff69b4, #ff1493);
             border-radius: 50%;
             display: flex;
@@ -320,11 +336,11 @@
 
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        .music-icon svg { width: 14px; height: 14px; fill: #ffffff; }
+        .music-icon svg { width: 12px; height: 12px; fill: #ffffff; }
 
         .music-text {
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.68rem;
+            font-size: clamp(0.58rem, 1.8vw, 0.68rem);
             font-weight: 800;
             color: #ff1493;
             letter-spacing: 0.5px;
@@ -340,7 +356,7 @@
 
     <!-- Audio Track from Repo -->
     <audio id="bgMusic" loop autoplay preload="auto">
-        <source src="Layla _ لَيْلَى  – Arabic Techno House Mix.mp3" type="audio/mpeg">
+        <source src="achref_______.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Music Indicator Badge -->
@@ -348,7 +364,7 @@
         <div class="music-icon">
             <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
         </div>
-        <span class="music-text">ARABIC TECHNO PLAYING 🎵</span>
+        <span class="music-text">MUSIC PLAYING 🎵</span>
     </div>
 
     <div class="container">
