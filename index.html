@@ -319,6 +319,7 @@
             gap: 8px;
             box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
             z-index: 100;
+            cursor: pointer;
         }
 
         .music-icon {
@@ -354,17 +355,17 @@
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
 
-    <!-- Audio Track from Repo -->
+    <!-- Audio Track (Layla Arabic Techno Mix) -->
     <audio id="bgMusic" loop autoplay preload="auto">
-        <source src="achref_______.mp3" type="audio/mpeg">
+        <source src="Layla_لَيْلَى–Arabic_Techno_HouseèMix.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Music Indicator Badge -->
-    <div class="music-indicator">
+    <div class="music-indicator" id="musicBtn">
         <div class="music-icon">
             <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
         </div>
-        <span class="music-text">MUSIC PLAYING 🎵</span>
+        <span class="music-text" id="musicText">MUSIC PLAYING 🎵</span>
     </div>
 
     <div class="container">
@@ -446,23 +447,30 @@
 
     <script>
         const audio = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        const musicText = document.getElementById('musicText');
 
-        window.addEventListener('DOMContentLoaded', () => {
-            let playPromise = audio.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(() => {
-                    const forcePlay = () => {
-                        audio.play();
-                        document.removeEventListener('mousemove', forcePlay);
-                        document.removeEventListener('touchstart', forcePlay);
-                        document.removeEventListener('click', forcePlay);
-                        document.removeEventListener('scroll', forcePlay);
-                    };
-                    document.addEventListener('mousemove', forcePlay);
-                    document.addEventListener('touchstart', forcePlay);
-                    document.addEventListener('click', forcePlay);
-                    document.addEventListener('scroll', forcePlay);
-                });
+        // Play audio on first user click/touch (Autoplay policy fix)
+        const startAudio = () => {
+            audio.play().then(() => {
+                musicText.innerText = "MUSIC PLAYING 🎵";
+            }).catch(() => {});
+            document.removeEventListener('click', startAudio);
+            document.removeEventListener('touchstart', startAudio);
+        };
+
+        document.addEventListener('click', startAudio);
+        document.addEventListener('touchstart', startAudio);
+
+        // Toggle Play/Pause on indicator click
+        musicBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (audio.paused) {
+                audio.play();
+                musicText.innerText = "MUSIC PLAYING 🎵";
+            } else {
+                audio.pause();
+                musicText.innerText = "MUSIC PAUSED 🔇";
             }
         });
     </script>
